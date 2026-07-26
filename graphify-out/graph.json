@@ -1,0 +1,112 @@
+{
+  "nodes": [
+    {
+      "id": "builder_main",
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "builder/main.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "builder_main_build_firmware",
+      "label": "build_firmware()",
+      "file_type": "code",
+      "source_file": "builder/main.py",
+      "source_location": "L112",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "builder_main",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "subprocess",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "scons_script",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "detect_dfp",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "detect_xc8",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "builder_main",
+      "target": "builder_main_build_firmware",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "builder/main.py",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

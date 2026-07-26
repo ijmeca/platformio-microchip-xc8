@@ -1,0 +1,128 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"1404 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC10-12Fxxx_DFP/1.3.46/xc8/pic/include/proc/pic12f675.h
+[v _ANSEL `Vuc ~T0 @X0 0 e@159 ]
+"564
+[v _CMCON `Vuc ~T0 @X0 0 e@25 ]
+"218
+[v _GPIO `Vuc ~T0 @X0 0 e@5 ]
+"797
+[v _TRISIO `Vuc ~T0 @X0 0 e@133 ]
+"1585
+[v _GP0 `Vb ~T0 @X0 0 e@40 ]
+[v F667 `(v ~T0 @X0 1 tf1`ul ]
+"92 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC10-12Fxxx_DFP/1.3.46/xc8/pic/include/pic.h
+[v __delay `JF667 ~T0 @X0 0 e ]
+[p i __delay ]
+"54 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC10-12Fxxx_DFP/1.3.46/xc8/pic/include/proc/pic12f675.h
+[; <" INDF equ 00h ;# ">
+"74
+[; <" TMR0 equ 01h ;# ">
+"94
+[; <" PCL equ 02h ;# ">
+"114
+[; <" STATUS equ 03h ;# ">
+"200
+[; <" FSR equ 04h ;# ">
+"220
+[; <" GPIO equ 05h ;# ">
+"308
+[; <" PCLATH equ 0Ah ;# ">
+"328
+[; <" INTCON equ 0Bh ;# ">
+"406
+[; <" PIR1 equ 0Ch ;# ">
+"454
+[; <" TMR1 equ 0Eh ;# ">
+"461
+[; <" TMR1L equ 0Eh ;# ">
+"481
+[; <" TMR1H equ 0Fh ;# ">
+"501
+[; <" T1CON equ 010h ;# ">
+"566
+[; <" CMCON equ 019h ;# ">
+"625
+[; <" ADRESH equ 01Eh ;# ">
+"645
+[; <" ADCON0 equ 01Fh ;# ">
+"729
+[; <" OPTION_REG equ 081h ;# ">
+"799
+[; <" TRISIO equ 085h ;# ">
+"849
+[; <" PIE1 equ 08Ch ;# ">
+"897
+[; <" PCON equ 08Eh ;# ">
+"931
+[; <" OSCCAL equ 090h ;# ">
+"991
+[; <" WPU equ 095h ;# ">
+"1036
+[; <" IOC equ 096h ;# ">
+"1041
+[; <" IOCB equ 096h ;# ">
+"1210
+[; <" VRCON equ 099h ;# ">
+"1270
+[; <" EEDATA equ 09Ah ;# ">
+"1275
+[; <" EEDAT equ 09Ah ;# ">
+"1308
+[; <" EEADR equ 09Bh ;# ">
+"1328
+[; <" EECON1 equ 09Ch ;# ">
+"1366
+[; <" EECON2 equ 09Dh ;# ">
+"1386
+[; <" ADRESL equ 09Eh ;# ">
+"1406
+[; <" ANSEL equ 09Fh ;# ">
+"5 main.c
+[p x FOSC  =  INTRCIO ]
+"6
+[p x WDTE  =  OFF ]
+"7
+[p x PWRTE  =  ON ]
+"8
+[p x MCLRE  =  OFF ]
+"9
+[p x BOREN  =  ON ]
+"10
+[p x CP  =  OFF ]
+"11
+[p x CPD  =  OFF ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"13
+[v _main `(v ~T0 @X0 1 ef ]
+"14
+{
+[e :U _main ]
+[f ]
+"15
+[e = _ANSEL -> -> 0 `i `uc ]
+"16
+[e = _CMCON -> -> 7 `i `uc ]
+"18
+[e = _GPIO -> -> 0 `i `uc ]
+"19
+[e = _TRISIO -> -> 0 `i `uc ]
+"21
+[e :U 87 ]
+{
+"22
+[e = _GP0 -> -> 1 `i `b ]
+"23
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"25
+[e = _GP0 -> -> 0 `i `b ]
+"26
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"27
+}
+[e :U 86 ]
+[e $U 87  ]
+[e :U 88 ]
+"28
+[e :UE 85 ]
+}

@@ -1,0 +1,22 @@
+{
+  "build": {
+    "core": "pic8",
+    "f_cpu": "4000000L",
+    "mcu": "16F877A"
+  },
+  "frameworks": [
+    "xc8"
+  ],
+  "microchip8": {
+    "family": "PIC16F",
+    "memory_detected": false
+  },
+  "name": "Microchip PIC16F877A",
+  "platform": "microchip8",
+  "upload": {
+    "maximum_ram_size": 0,
+    "maximum_size": 0
+  },
+  "url": "https://www.microchip.com/en-us/product/PIC16F877A",
+  "vendor": "Microchip"
+}

@@ -1,0 +1,18 @@
+{
+  "build": {
+    "core": "pic8",
+    "f_cpu": "4000000L",
+    "mcu": "12F675"
+  },
+  "frameworks": [
+    "xc8"
+  ],
+  "name": "Microchip PIC12F675",
+  "platform": "microchip8",
+  "upload": {
+    "maximum_ram_size": 64,
+    "maximum_size": 1024
+  },
+  "url": "https://www.microchip.com/en-us/product/PIC12F675",
+  "vendor": "Microchip"
+}

@@ -1,0 +1,22 @@
+{
+  "build": {
+    "core": "pic8",
+    "f_cpu": "4000000L",
+    "mcu": "12F1840"
+  },
+  "frameworks": [
+    "xc8"
+  ],
+  "microchip8": {
+    "family": "PIC12F",
+    "memory_detected": false
+  },
+  "name": "Microchip PIC12F1840",
+  "platform": "microchip8",
+  "upload": {
+    "maximum_ram_size": 0,
+    "maximum_size": 0
+  },
+  "url": "https://www.microchip.com/en-us/product/PIC12F1840",
+  "vendor": "Microchip"
+}
