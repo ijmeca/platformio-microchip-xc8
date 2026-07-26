@@ -1,27 +1,103 @@
-# PlatformIO
-.pio/
+# ============================================================
+# Arquivos privados de agentes e IA
+# ============================================================
 
-# VSCode
+AGENTS.md
+CLAUDE.md
+prompts/
+
+# Outras instruções locais de IA
+.codex/
+.claude/
+.cursor/
+.cursorignore
+.cursorrules
+
+# ============================================================
+# PlatformIO
+# ============================================================
+
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ============================================================
+# Visual Studio Code
+# ============================================================
+
 .vscode/
 
+# Caso queira publicar configurações específicas do VS Code,
+# remova ".vscode/" acima e use exceções como:
+# !.vscode/extensions.json
+
+# ============================================================
 # Python
+# ============================================================
+
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+
+# ============================================================
 # macOS
-.DS_Store
+# ============================================================
 
-# Build XC8
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# ============================================================
+# Artefatos do XC8 e arquivos de compilação
+# ============================================================
+
 *.elf
 *.hex
+*.bin
 *.map
 *.lst
 *.cod
+*.cof
+*.o
+*.obj
+*.d
+*.p1
+*.sdb
+*.sym
 
-# AI documents
-CLAUDE.md
-AGENTS.md
-prompts/
+# Diretórios genéricos de build
+build/
+dist/
+out/
 
-# Local files
+# ============================================================
+# Arquivos locais e segredos
+# ============================================================
+
 .env
+.env.*
+!.env.example
+
+*.local
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
