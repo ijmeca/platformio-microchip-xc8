@@ -1,0 +1,27 @@
+# PlatformIO
+.pio/
+
+# VSCode
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Build XC8
+*.elf
+*.hex
+*.map
+*.lst
+*.cod
+
+# AI documents
+CLAUDE.md
+AGENTS.md
+prompts/
+
+# Local files
+.env
