@@ -2,23 +2,24 @@
   "build": {
     "core": "pic8",
     "f_cpu": "4000000L",
-    "mcu": "16F877A"
+    "mcu": "12F615"
   },
   "frameworks": [
     "xc8"
   ],
   "microchip8": {
-    "family": "PIC16F",
-    "memory_detected": false
+    "eeprom_size": 0,
+    "family": "PIC12F",
+    "memory_detected": true
   },
-  "name": "Microchip PIC16F877A",
+  "name": "Microchip PIC12F615",
   "platform": "microchip8",
   "upload": {
     "protocol": "pickit3",
     "protocols": ["pickit3"],
-    "maximum_ram_size": 0,
-    "maximum_size": 0
+    "maximum_ram_size": 64,
+    "maximum_size": 1024
   },
-  "url": "https://www.microchip.com/en-us/product/PIC16F877A",
+  "url": "https://www.microchip.com/en-us/product/PIC12F615",
   "vendor": "Microchip"
 }

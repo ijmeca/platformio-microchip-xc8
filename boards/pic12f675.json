@@ -10,6 +10,8 @@
   "name": "Microchip PIC12F675",
   "platform": "microchip8",
   "upload": {
+    "protocol": "pickit3",
+    "protocols": ["pickit3"],
     "maximum_ram_size": 64,
     "maximum_size": 1024
   },

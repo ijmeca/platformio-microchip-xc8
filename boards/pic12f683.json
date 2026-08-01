@@ -14,6 +14,8 @@
   "name": "Microchip PIC12F683",
   "platform": "microchip8",
   "upload": {
+    "protocol": "pickit3",
+    "protocols": ["pickit3"],
     "maximum_ram_size": 0,
     "maximum_size": 0
   },
