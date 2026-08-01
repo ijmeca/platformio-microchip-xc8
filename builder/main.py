@@ -14,6 +14,8 @@ if str(scripts_dir) not in sys.path:
     sys.path.insert(0, str(scripts_dir))
 
 from detect_dfp import discover_dfps, select_dfp_for_mcu
+from detect_ipecmd import find_ipecmd, pickit3_command
+from detect_pickit3 import find_pickit3, standalone_pickit3_command
 from detect_xc8 import find_xc8
 
 
@@ -100,6 +102,7 @@ env.Append(
 )
 
 firmware_elf = os.path.join(build_dir, "firmware.elf")
+firmware_hex = os.path.join(build_dir, "firmware.hex")
 
 sources = env.Glob(
     os.path.join(project_src_dir, "*.c")
@@ -141,14 +144,91 @@ def build_firmware(target, source, env):
     if result.returncode != 0:
         return result.returncode
 
+    for artifact in (firmware_elf, firmware_hex):
+        if not os.path.isfile(artifact):
+            print("XC8 n\u00e3o gerou o artefato esperado:", artifact)
+            return 1
+
     return 0
 
 
 build = env.Command(
-    firmware_elf,
+    [firmware_elf, firmware_hex],
     sources,
     build_firmware,
 )
 
 AlwaysBuild(build)
 Default(build)
+
+
+def upload_firmware(target, source, env):
+    protocol = env.subst("$UPLOAD_PROTOCOL") or board.get(
+        "upload.protocol", "pickit3"
+    )
+    if str(protocol).lower() != "pickit3":
+        print("Protocolo de upload n\u00e3o suportado:", protocol)
+        return 1
+
+    upload_flags = env.GetProjectOption("upload_flags", [])
+    if isinstance(upload_flags, str):
+        upload_flags = upload_flags.split()
+
+    standalone = find_pickit3(
+        custom_path=env.GetProjectOption("custom_pickit3_path", None)
+    )
+    if standalone:
+        csc = os.path.join(
+            os.environ.get("WINDIR", r"C:\Windows"),
+            "Microsoft.NET",
+            "Framework64",
+            "v4.0.30319",
+            "csc.exe",
+        )
+        uploader = os.path.join(build_dir, "pickit3-uploader.exe")
+        uploader_source = os.path.join(str(scripts_dir), "pickit3_uploader.cs")
+        if not os.path.isfile(csc):
+            print("Compilador .NET Framework csc.exe n\u00e3o encontrado:", csc)
+            return 1
+        compile_result = subprocess.run(
+            [
+                csc,
+                "/nologo",
+                "/target:exe",
+                "/platform:x86",
+                "/reference:System.Windows.Forms.dll",
+                "/out:%s" % uploader,
+                uploader_source,
+            ],
+            check=False,
+        )
+        if compile_result.returncode != 0:
+            return compile_result.returncode
+        command = standalone_pickit3_command(
+            uploader,
+            standalone["executable"],
+            standalone["device_file"],
+            mcu,
+            firmware_hex,
+        ) + upload_flags
+        print("PICkit 3 standalone upload via:", standalone["executable"])
+    else:
+        installation = find_ipecmd(
+            custom_path=env.GetProjectOption("custom_ipecmd_path", None)
+        )
+        if not installation:
+            print(
+                "PICkit 3 Programmer ou MPLAB IPE IPECMD n\u00e3o encontrado. "
+                "Defina custom_pickit3_path, PICKIT3_PATH, custom_ipecmd_path "
+                "ou IPECMD_PATH."
+            )
+            return 1
+        command = pickit3_command(
+            installation["executable"], mcu, firmware_hex, upload_flags
+        )
+        print("PICkit 3 upload via:", installation["executable"])
+    return subprocess.run(command, check=False).returncode
+
+
+upload = env.Alias("upload", build, upload_firmware)
+AlwaysBuild(upload)
