@@ -1,97 +1,142 @@
 {
   "boards/pic12f1840.json": {
-    "mtime": 1785105453.277044,
-    "ast_hash": "efd3552559685c534db42beca835aa7b",
-    "semantic_hash": "efd3552559685c534db42beca835aa7b"
+    "mtime": 1785610718.389159,
+    "ast_hash": "ed7b37b88c314ea89e2b2a46c5244231",
+    "semantic_hash": ""
   },
   "boards/pic12f675.json": {
-    "mtime": 1785105454.204345,
-    "ast_hash": "0906d5d44967dc9c0ee0cd092d33f0fc",
-    "semantic_hash": "0906d5d44967dc9c0ee0cd092d33f0fc"
+    "mtime": 1785610719.9047596,
+    "ast_hash": "b4cc903c6ff1ab31101f914e7cc77ec3",
+    "semantic_hash": ""
   },
   "boards/pic12f683.json": {
-    "mtime": 1785105455.1358023,
-    "ast_hash": "8bba6de8d9afd554821cc43a6de8071b",
-    "semantic_hash": "8bba6de8d9afd554821cc43a6de8071b"
+    "mtime": 1785610721.5098133,
+    "ast_hash": "77b19aa760657f89928aa92719cfa181",
+    "semantic_hash": ""
   },
   "boards/pic16f877a.json": {
-    "mtime": 1785105456.0740714,
-    "ast_hash": "5c77aa833563ff67911208ce9b1d048c",
-    "semantic_hash": "5c77aa833563ff67911208ce9b1d048c"
+    "mtime": 1785610723.08084,
+    "ast_hash": "e25ce75e8dfe61d2fb8fccf04ddad95c",
+    "semantic_hash": ""
   },
   "boards/pic18f4550.json": {
-    "mtime": 1785105457.0271835,
-    "ast_hash": "240617b2b4e10f8df1d74a58acfea703",
-    "semantic_hash": "240617b2b4e10f8df1d74a58acfea703"
+    "mtime": 1785610724.5229769,
+    "ast_hash": "428d520ff3fb2a81ff9e601d6292a404",
+    "semantic_hash": ""
   },
   "builder/build.py": {
-    "mtime": 1785099119.987281,
+    "mtime": 1785609985.9975612,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "builder/main.py": {
-    "mtime": 1785106400.037375,
-    "ast_hash": "9d2874378309a7c901e4a209c945ad5c",
-    "semantic_hash": "9d2874378309a7c901e4a209c945ad5c"
+    "mtime": 1785612114.9666412,
+    "ast_hash": "4c9a9cdd00b8051152b20c3265af112b",
+    "semantic_hash": ""
   },
   "builder/upload.py": {
-    "mtime": 1785099120.0631626,
+    "mtime": 1785609985.9975612,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "examples/blink/include/config.h": {
-    "mtime": 1785099121.3547235,
+    "mtime": 1785609986.0397344,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "examples/blink/src/main.c": {
-    "mtime": 1785100849.8080776,
+    "mtime": 1785610991.689906,
     "ast_hash": "30115609f9c1d45ce57e894f54ba9bd9",
     "semantic_hash": "30115609f9c1d45ce57e894f54ba9bd9"
   },
   "framework-xc8/framework.py": {
-    "mtime": 1785099120.1383488,
+    "mtime": 1785609985.7873156,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "platform.json": {
-    "mtime": 1785106360.2519085,
-    "ast_hash": "ed29c57ebdb2dce138fa7f787a3a5962",
-    "semantic_hash": "ed29c57ebdb2dce138fa7f787a3a5962"
+    "mtime": 1785613525.8027904,
+    "ast_hash": "75b1e0a63b63bb8cea291df06cadd5da",
+    "semantic_hash": ""
   },
   "platform.py": {
-    "mtime": 1785101534.1908998,
-    "ast_hash": "92fe1d0932c7c392412bde5bed67b654",
-    "semantic_hash": "92fe1d0932c7c392412bde5bed67b654"
+    "mtime": 1785613524.4771874,
+    "ast_hash": "06ac7bb8c1749b8066bffc909b423d3d",
+    "semantic_hash": ""
   },
   "scripts/detect_xc8.py": {
-    "mtime": 1785104927.9033968,
+    "mtime": 1785609985.9198177,
     "ast_hash": "d9914c41bee483423f0ac12283871527",
     "semantic_hash": "d9914c41bee483423f0ac12283871527"
   },
   "scripts/version.py": {
-    "mtime": 1785099120.2877839,
+    "mtime": 1785609985.9198177,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "scripts/detect_dfp.py": {
-    "mtime": 1785104928.8328023,
+    "mtime": 1785609985.9198177,
     "ast_hash": "7ba54d174e318f39d9f31b3f5cb6e3fe",
     "semantic_hash": "7ba54d174e318f39d9f31b3f5cb6e3fe"
   },
   "tests/test_detection.py": {
-    "mtime": 1785104981.8439476,
-    "ast_hash": "6eecd574470de58f26714035ed40404e",
-    "semantic_hash": "6eecd574470de58f26714035ed40404e"
+    "mtime": 1785611947.2102702,
+    "ast_hash": "8cf677cbf1f494206de69b03766cfbbb",
+    "semantic_hash": ""
   },
   "tests/test_manifests.py": {
-    "mtime": 1785105458.0371304,
-    "ast_hash": "fb5cbb411bbbe47e552492b008163b23",
-    "semantic_hash": "fb5cbb411bbbe47e552492b008163b23"
+    "mtime": 1785613300.1943598,
+    "ast_hash": "fdad8fd06634615f4aeb96d275941711",
+    "semantic_hash": ""
   },
-  "examples/blink/.vscode/extensions.json": {
-    "mtime": 1785105922.2353368,
-    "ast_hash": "90f13aaa6d970e2869f11ed92ffbc61a",
-    "semantic_hash": "90f13aaa6d970e2869f11ed92ffbc61a"
+  "README.md": {
+    "mtime": 1785609985.9685068,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "examples/pic12f683-blink/src/main.c": {
+    "mtime": 1785610997.249439,
+    "ast_hash": "f61d5c317610a5a78c5b95a4674e028f",
+    "semantic_hash": ""
+  },
+  "scripts/detect_ipecmd.py": {
+    "mtime": 1785610711.6317563,
+    "ast_hash": "a2e7211c4c244199c49351a88048502e",
+    "semantic_hash": ""
+  },
+  "scripts/detect_pickit3.py": {
+    "mtime": 1785611943.602547,
+    "ast_hash": "96b272684f3097f2ed4c6beb92e03ef8",
+    "semantic_hash": ""
+  },
+  "scripts/pickit3_uploader.cs": {
+    "mtime": 1785612038.468346,
+    "ast_hash": "957c384566611c62b1d919bb4fc00cce",
+    "semantic_hash": ""
+  },
+  "boards/pic12f615.json": {
+    "mtime": 1785613288.7604191,
+    "ast_hash": "2b65439e34785ad1264b197245e6a5f8",
+    "semantic_hash": ""
+  },
+  "boards/pic16f628.json": {
+    "mtime": 1785613289.9378312,
+    "ast_hash": "ee0b6258d3d8a6b0d92857f9197fc393",
+    "semantic_hash": ""
+  },
+  "boards/pic16f628a.json": {
+    "mtime": 1785613291.14375,
+    "ast_hash": "644f9c876a21bb03208dec790bad94da",
+    "semantic_hash": ""
+  },
+  "examples/pic12f615-blink/src/main.c": {
+    "mtime": 1785613295.0576959,
+    "ast_hash": "c2825e2c1081bafd96b2701a26243988",
+    "semantic_hash": ""
+  },
+  "examples/pic16f628-blink/src/main.c": {
+    "mtime": 1785613299.013932,
+    "ast_hash": "f0a24103d20f224ea3454253d99ea92d",
+    "semantic_hash": ""
   }
 }
