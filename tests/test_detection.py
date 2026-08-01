@@ -15,6 +15,8 @@ from scripts.detect_xc8 import (
     normalize_xc8_path,
     semantic_version_key,
 )
+from scripts.detect_ipecmd import find_ipecmd, pickit3_command
+from scripts.detect_pickit3 import find_pickit3, standalone_pickit3_command
 
 
 def make_executable(path):
@@ -160,6 +162,48 @@ class DFPDetectionTests(unittest.TestCase):
                 Path(temporary), "PIC10-12Fxxx_DFP", "1.0", ["12f675"]
             )
             self.assertIsNone(select_dfp_for_mcu("16F877A", [dfp]))
+
+
+class PICkit3DetectionTests(unittest.TestCase):
+    def test_finds_standalone_application_and_builds_command(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "PICkit 3 v3"
+            application = make_executable(root / "PICkit3.exe")
+            device_file = root / "PK2DeviceFile.dat"
+            device_file.touch()
+            result = find_pickit3(environ={}, search_roots=[root])
+            command = standalone_pickit3_command(
+                "uploader.exe",
+                result["executable"],
+                result["device_file"],
+                "PIC12F683",
+                "firmware.hex",
+            )
+            self.assertEqual(result["executable"], str(application.resolve()))
+            self.assertIn("12F683", command)
+            self.assertEqual(command[-2:], ["--hex", "firmware.hex"])
+
+    def test_selects_newest_ipecmd(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            make_executable(
+                root / "v6.10" / "mplab_platform" / "mplab_ipe" / "ipecmd.exe"
+            )
+            newest = make_executable(
+                root / "v6.20" / "mplab_platform" / "mplab_ipe" / "ipecmd.exe"
+            )
+            result = find_ipecmd(
+                environ={}, path_lookup=lambda name: None, search_roots=[root]
+            )
+            self.assertEqual(result["executable"], str(newest.resolve()))
+
+    def test_builds_pickit3_command_without_shell(self):
+        command = pickit3_command(
+            "ipecmd.exe", "PIC12F675", "build/firmware.hex", ["-OL"]
+        )
+        self.assertEqual(command[0:3], ["ipecmd.exe", "-P12F675", "-TPPK3"])
+        self.assertIn("-F%s" % Path("build/firmware.hex"), command)
+        self.assertEqual(command[-2:], ["-M", "-OL"])
 
 
 if __name__ == "__main__":
