@@ -39,6 +39,21 @@ if not xc8_installation:
     )
 
 xc8 = xc8_installation["executable"]
+
+# Microsoft C/C++ cannot probe xc8-cc as a compiler, but XC8 ships the Clang
+# frontend used internally. Prefer that frontend for parsing and completion;
+# the firmware build below continues to invoke xc8-cc directly.
+clang_name = "clang.exe" if os.name == "nt" else "clang"
+xc8_clang = os.path.join(
+    xc8_installation["root"], "pic", "bin", clang_name
+)
+ide_compiler = xc8_clang if os.path.isfile(xc8_clang) else xc8
+env.Replace(
+    CC=ide_compiler,
+    CXX=ide_compiler,
+    AS=xc8,
+)
+
 configured_dfp = env.GetProjectOption("custom_dfp_path", None)
 dfp_paths = discover_dfps(
     custom_dfp_path=configured_dfp,
@@ -86,6 +101,14 @@ intellisense_defines = [
     ("__int24", "int"),
     ("__uint24", "unsigned int"),
     ("__bank0", ""),
+    "__at(address)=",
+    "asm(statement)=",
+    "__interrupt(...)=",
+    "__section(name)=",
+    "__align(value)=",
+    ("__control", ""),
+    ("__persistent", ""),
+    ("__eeprom", ""),
     ("_%s" % mcu, 1),
     ("__%s" % mcu, 1),
     ("__%s__" % mcu, 1),

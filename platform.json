@@ -2,7 +2,7 @@
   "name": "microchip8",
   "title": "Microchip PIC8",
   "description": "PlatformIO development platform for Microchip PIC10, PIC12, PIC16 and PIC18 microcontrollers using MPLAB XC8.",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "homepage": "https://github.com/ijmeca/platform-microchip8",
   "license": "MIT",
   "keywords": [

@@ -1,13 +1,18 @@
 # Graph Report - platformio-microchip-xc8  (2026-08-01)
 
 ## Corpus Check
-- 28 files · ~3,568 words
+- 28 files · ~3,643 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
 - 104 nodes · 192 edges · 18 communities (15 shown, 3 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `16b63020`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - find_xc8
