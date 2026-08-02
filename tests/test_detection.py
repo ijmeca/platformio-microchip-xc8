@@ -20,6 +20,11 @@ from scripts.detect_ipecmd import (
     normalize_ipecmd_path,
     pickit3_command,
 )
+from scripts.detect_pk2cmd import (
+    find_pk2cmd,
+    normalize_pk2cmd_path,
+    pk2cmd_command,
+)
 from scripts.detect_pickit3 import find_pickit3, standalone_pickit3_command
 
 
@@ -171,6 +176,52 @@ class DFPDetectionTests(unittest.TestCase):
 
 
 class PICkit3DetectionTests(unittest.TestCase):
+    def test_normalizes_native_pk2cmd_installation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "pk2cmd"
+            executable = make_executable(root / "pk2cmd")
+            device_file = root / "PK2DeviceFile.dat"
+            device_file.touch()
+            for supplied in (root, executable):
+                result = normalize_pk2cmd_path(supplied)
+                self.assertEqual(result["executable"], str(executable.resolve()))
+                self.assertEqual(result["device_file"], str(device_file.resolve()))
+
+    def test_native_pk2cmd_respects_custom_environment_path_priority(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            custom = make_executable(root / "custom" / "pk2cmd")
+            (custom.parent / "PK2DeviceFile.dat").touch()
+            environment = make_executable(root / "environment" / "pk2cmd")
+            (environment.parent / "PK2DeviceFile.dat").touch()
+            on_path = make_executable(root / "path" / "pk2cmd")
+            (on_path.parent / "PK2DeviceFile.dat").touch()
+            result = find_pk2cmd(
+                custom_path=str(custom.parent),
+                environ={"PK2CMD_PATH": str(environment.parent)},
+                path_lookup=lambda name: str(on_path),
+            )
+            self.assertEqual(result["executable"], str(custom.resolve()))
+
+    def test_builds_native_pk2cmd_command_without_shell(self):
+        command = pk2cmd_command(
+            "/external/tools/pk2cmd",
+            "12F683",
+            "../../../project/firmware.hex",
+            externally_powered=True,
+            extra_flags=["-X"],
+        )
+        self.assertEqual(
+            command[:4],
+            [
+                "pk2cmd",
+                "-PPIC12F683",
+                "-F../../../project/firmware.hex",
+                "-M",
+            ],
+        )
+        self.assertEqual(command[-2:], ["-W", "-X"])
+
     def test_finds_standalone_application_and_builds_command(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "PICkit 3 v3"

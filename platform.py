@@ -33,6 +33,16 @@ class Microchip8Platform(PlatformBase):
         if os.path.isfile(main_path):
             return False
 
+        section = "env:%s" % environment
+        project_config.set(section, "custom_pickit3_power", "yes")
+        if os.name != "nt":
+            project_config.set(
+                section,
+                "custom_pk2cmd_path",
+                "~/.platformio/packages/tool-pk2cmd",
+            )
+        project_config.save()
+
         os.makedirs(src_dir, exist_ok=True)
         with open(main_path, "w", encoding="utf-8", newline="\n") as fp:
             fp.write(XC8_MAIN_TEMPLATE)

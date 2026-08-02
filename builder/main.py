@@ -15,6 +15,7 @@ if str(scripts_dir) not in sys.path:
 
 from detect_dfp import discover_dfps, select_dfp_for_mcu
 from detect_ipecmd import find_ipecmd, pickit3_command
+from detect_pk2cmd import find_pk2cmd, pk2cmd_command
 from detect_pickit3 import find_pickit3, standalone_pickit3_command
 from detect_xc8 import find_xc8
 
@@ -239,6 +240,33 @@ def upload_firmware(target, source, env):
             firmware_hex,
         ) + upload_flags
         print("PICkit 3 standalone upload via:", standalone["executable"])
+    elif os.name != "nt" and (
+        pk2cmd := find_pk2cmd(
+            custom_path=env.GetProjectOption("custom_pk2cmd_path", None)
+        )
+    ):
+        firmware_directory = os.path.dirname(os.path.abspath(firmware_hex))
+        power_from_pickit = str(
+            env.GetProjectOption("custom_pickit3_power", "no")
+        ).strip().lower() in ("1", "yes", "true", "on")
+        command = pk2cmd_command(
+            pk2cmd["executable"],
+            mcu,
+            os.path.basename(firmware_hex),
+            externally_powered=not power_from_pickit,
+            extra_flags=upload_flags,
+        )
+        print("PICkit 3 native upload via:", pk2cmd["executable"])
+        process_environment = dict(os.environ)
+        process_environment["PATH"] = os.pathsep.join(
+            (pk2cmd["root"], process_environment.get("PATH", ""))
+        )
+        return subprocess.run(
+            command,
+            cwd=firmware_directory,
+            env=process_environment,
+            check=False,
+        ).returncode
     else:
         installation = find_ipecmd(
             custom_path=env.GetProjectOption("custom_ipecmd_path", None)

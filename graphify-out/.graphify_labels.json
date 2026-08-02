@@ -16,5 +16,7 @@
   "14": "pic12f683-blink/src/main.c",
   "15": "PICkit3Uploader",
   "16": "test_detection.py",
-  "17": "pic16f628-blink/src/main.c"
+  "17": "pic16f628-blink/src/main.c",
+  "18": "make_executable",
+  "19": "install_pk2cmd_macos.py"
 }
