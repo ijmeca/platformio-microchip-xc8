@@ -24,6 +24,14 @@ class BoardManifestTests(unittest.TestCase):
     def test_new_board_memory_matches_device_data(self):
         boards_dir = Path(__file__).resolve().parent.parent / "boards"
         expected = {
+            "pic10f200": (256, 16, 0),
+            "pic10f202": (512, 24, 0),
+            "pic10f204": (256, 16, 0),
+            "pic10f206": (512, 24, 0),
+            "pic10f220": (256, 16, 0),
+            "pic10f222": (512, 23, 0),
+            "pic10f320": (256, 64, 0),
+            "pic10f322": (512, 64, 0),
             "pic12f615": (1024, 64, 0),
             "pic16f628": (2048, 224, 128),
             "pic16f628a": (2048, 224, 128),

@@ -1,0 +1,25 @@
+{
+  "build": {
+    "core": "pic8",
+    "f_cpu": "4000000L",
+    "mcu": "10F222"
+  },
+  "frameworks": [
+    "xc8"
+  ],
+  "microchip8": {
+    "eeprom_size": 0,
+    "family": "PIC10F",
+    "memory_detected": true
+  },
+  "name": "Microchip PIC10F222",
+  "platform": "microchip8",
+  "upload": {
+    "protocol": "pickit3",
+    "protocols": ["pickit3"],
+    "maximum_ram_size": 23,
+    "maximum_size": 512
+  },
+  "url": "https://www.microchip.com/en-us/product/PIC10F222",
+  "vendor": "Microchip"
+}
