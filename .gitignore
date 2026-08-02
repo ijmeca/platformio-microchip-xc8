@@ -5,6 +5,7 @@
 AGENTS.md
 CLAUDE.md
 prompts/
+graphify-out/
 
 # Outras instruções locais de IA
 .codex/
@@ -84,13 +85,6 @@ ENV/
 build/
 dist/
 out/
-
-# Cache e backups locais do Graphify
-graphify-out/cache/
-graphify-out/.graphify_root
-graphify-out/.graphify_labels.json
-graphify-out/.graphify_labels.json.sig
-graphify-out/20??-??-??/
 
 # ============================================================
 # Arquivos locais e segredos
