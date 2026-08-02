@@ -1,0 +1,25 @@
+{
+  "build": {
+    "core": "pic8",
+    "f_cpu": "4000000L",
+    "mcu": "10F204"
+  },
+  "frameworks": [
+    "xc8"
+  ],
+  "microchip8": {
+    "eeprom_size": 0,
+    "family": "PIC10F",
+    "memory_detected": true
+  },
+  "name": "Microchip PIC10F204",
+  "platform": "microchip8",
+  "upload": {
+    "protocol": "pickit3",
+    "protocols": ["pickit3"],
+    "maximum_ram_size": 16,
+    "maximum_size": 256
+  },
+  "url": "https://www.microchip.com/en-us/product/PIC10F204",
+  "vendor": "Microchip"
+}

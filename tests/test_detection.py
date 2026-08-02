@@ -15,7 +15,11 @@ from scripts.detect_xc8 import (
     normalize_xc8_path,
     semantic_version_key,
 )
-from scripts.detect_ipecmd import find_ipecmd, pickit3_command
+from scripts.detect_ipecmd import (
+    find_ipecmd,
+    normalize_ipecmd_path,
+    pickit3_command,
+)
 from scripts.detect_pickit3 import find_pickit3, standalone_pickit3_command
 
 
@@ -130,12 +134,14 @@ class DFPDetectionTests(unittest.TestCase):
                 Path(temporary),
                 "PIC16Fxxx_DFP",
                 "2.0.0",
-                ["16f877a", "18f4550"],
+                ["10f200", "16f877a", "18f4550"],
             )
             proc = dfp / "pic" / "include" / "proc"
             (proc / "pic16f.h").touch()
             (proc / "legacy.h").touch()
-            self.assertEqual(set(devices_in_dfp(dfp)), {"16F877A", "18F4550"})
+            self.assertEqual(
+                set(devices_in_dfp(dfp)), {"10F200", "16F877A", "18F4550"}
+            )
 
     def test_selects_newest_pack_that_contains_mcu(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -196,6 +202,87 @@ class PICkit3DetectionTests(unittest.TestCase):
                 environ={}, path_lookup=lambda name: None, search_roots=[root]
             )
             self.assertEqual(result["executable"], str(newest.resolve()))
+
+    def test_normalizes_macos_ipecmd_script_from_mplabx_root(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "mplabx" / "v6.25"
+            script = make_executable(
+                root / "mplab_platform" / "mplab_ipe" / "bin" / "ipecmd.sh"
+            )
+            result = normalize_ipecmd_path(root)
+            self.assertEqual(result["executable"], str(script.resolve()))
+            self.assertEqual(result["version"], "6.25")
+
+    def test_selects_newest_macos_ipecmd(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            make_executable(
+                root
+                / "v5.45"
+                / "mplab_platform"
+                / "mplab_ipe"
+                / "bin"
+                / "ipecmd.sh"
+            )
+            unsupported = make_executable(
+                root
+                / "v6.25"
+                / "mplab_platform"
+                / "mplab_ipe"
+                / "bin"
+                / "ipecmd.sh"
+            )
+            self.assertTrue(unsupported.is_file())
+            result = find_ipecmd(
+                environ={}, path_lookup=lambda name: None, search_roots=[root]
+            )
+            expected = root / "v5.45" / "mplab_platform" / "mplab_ipe" / "bin" / "ipecmd.sh"
+            self.assertEqual(result["executable"], str(expected.resolve()))
+
+    def test_selects_ipecmd_620_as_latest_pickit3_compatible_version(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            supported = make_executable(
+                root
+                / "v6.20"
+                / "mplab_platform"
+                / "mplab_ipe"
+                / "bin"
+                / "ipecmd.sh"
+            )
+            make_executable(
+                root
+                / "v6.25"
+                / "mplab_platform"
+                / "mplab_ipe"
+                / "bin"
+                / "ipecmd.sh"
+            )
+            result = find_ipecmd(
+                environ={}, path_lookup=lambda name: None, search_roots=[root]
+            )
+            self.assertEqual(result["executable"], str(supported.resolve()))
+
+    def test_custom_macos_ipecmd_precedes_automatic_search(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            custom = make_executable(root / "custom" / "bin" / "ipecmd.sh")
+            make_executable(
+                root
+                / "automatic"
+                / "v6.25"
+                / "mplab_platform"
+                / "mplab_ipe"
+                / "bin"
+                / "ipecmd.sh"
+            )
+            result = find_ipecmd(
+                custom_path=str(custom),
+                environ={},
+                path_lookup=lambda name: None,
+                search_roots=[root / "automatic"],
+            )
+            self.assertEqual(result["executable"], str(custom.resolve()))
 
     def test_builds_pickit3_command_without_shell(self):
         command = pickit3_command(

@@ -197,9 +197,13 @@ def upload_firmware(target, source, env):
     if isinstance(upload_flags, str):
         upload_flags = upload_flags.split()
 
-    standalone = find_pickit3(
-        custom_path=env.GetProjectOption("custom_pickit3_path", None)
-    )
+    # The standalone Microchip application uses .NET Framework/Windows Forms.
+    # Keep that proven backend on Windows and use native IPECMD elsewhere.
+    standalone = None
+    if os.name == "nt":
+        standalone = find_pickit3(
+            custom_path=env.GetProjectOption("custom_pickit3_path", None)
+        )
     if standalone:
         csc = os.path.join(
             os.environ.get("WINDIR", r"C:\Windows"),

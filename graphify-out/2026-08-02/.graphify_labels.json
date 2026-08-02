@@ -1,0 +1,21 @@
+{
+  "0": "pic12f615-blink/src/main.c",
+  "1": "find_xc8",
+  "2": "detect_pickit3.py",
+  "3": "DFPDetectionTests",
+  "4": "Microchip8Platform",
+  "5": "BoardManifestTests",
+  "6": "detect_ipecmd.py",
+  "7": "main.c",
+  "8": "build.py",
+  "9": "upload.py",
+  "10": "config.h",
+  "11": "framework.py",
+  "12": "README.md",
+  "13": "version.py",
+  "14": "pic12f683-blink/src/main.c",
+  "15": "PICkit3Uploader",
+  "16": "test_detection.py",
+  "17": "pic16f628-blink/src/main.c",
+  "18": "pic10f200-basic/src/main.c"
+}

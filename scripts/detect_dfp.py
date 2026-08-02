@@ -8,7 +8,9 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
 
-DEVICE_HEADER = re.compile(r"^pic((?:12f|16f|18f)[a-z0-9]+)\.h$", re.IGNORECASE)
+DEVICE_HEADER = re.compile(
+    r"^pic((?:10f|12f|16f|18f)[a-z0-9]+)\.h$", re.IGNORECASE
+)
 
 
 def semantic_version_key(value: object) -> Tuple[int, ...]:
